@@ -4,6 +4,11 @@
     "title": "wishlist/service.proto",
     "version": "version not set"
   },
+  "tags": [
+    {
+      "name": "Wishlist"
+    }
+  ],
   "consumes": [
     "application/json"
   ],
@@ -473,14 +478,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -495,6 +497,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -523,7 +526,12 @@
           "type": "string",
           "title": "The customer adds the item to the wishlist"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "wishlistId",
+        "itemGrn"
+      ]
     },
     "wishlistAreItemsInWishlistsRequest": {
       "type": "object",
@@ -544,7 +552,11 @@
           },
           "title": "Max 500 items per request"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "itemGrns"
+      ]
     },
     "wishlistAreItemsInWishlistsResponse": {
       "type": "object",
@@ -588,7 +600,11 @@
           },
           "description": "Wishlist IDs to remove items from. Max 500 wishlists per request.\nIf not provided, items will be removed from all wishlists."
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "itemGrns"
+      ]
     },
     "wishlistBulkRemoveItemsFromWishlistsResponse": {
       "type": "object"
@@ -615,7 +631,11 @@
           "type": "boolean",
           "title": "If is the first wishlist for the customer, it will be set as default"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "privacy"
+      ]
     },
     "wishlistDeleteWishlistRequest": {
       "type": "object",
@@ -626,7 +646,11 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id"
+      ]
     },
     "wishlistDeleteWishlistResponse": {
       "type": "object"
@@ -640,7 +664,11 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id"
+      ]
     },
     "wishlistGetWishlistByIdRequest": {
       "type": "object",
@@ -651,7 +679,11 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id"
+      ]
     },
     "wishlistGetWishlistBySharedCodeRequest": {
       "type": "object",
@@ -666,7 +698,11 @@
           "type": "string",
           "title": "If customer_grn is not provided, the wishlist will be returned only if it is not PRIVATE"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "sharedCode"
+      ]
     },
     "wishlistListWishlistItemsRequest": {
       "type": "object",
@@ -688,7 +724,11 @@
         "pageToken": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "wishlistId"
+      ]
     },
     "wishlistListWishlistItemsResponse": {
       "type": "object",
@@ -696,6 +736,7 @@
         "wishlistItems": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/wishlistWishlistItemResponse"
           }
         },
@@ -721,12 +762,12 @@
           "$ref": "#/definitions/ListWishlistsRequestFilter"
         },
         "filterMask": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId"
+      ]
     },
     "wishlistListWishlistsResponse": {
       "type": "object",
@@ -734,6 +775,7 @@
         "wishlist": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/wishlistWishlistResponse"
           }
         },
@@ -769,7 +811,12 @@
           "type": "string",
           "description": "The wishlist to merge into the starting wishlist."
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "startingWishlistId",
+        "customerGrn"
+      ]
     },
     "wishlistPrivacy": {
       "type": "string",
@@ -790,7 +837,11 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id"
+      ]
     },
     "wishlistRemoveItemFromWishlistResponse": {
       "type": "object"
@@ -808,12 +859,15 @@
           "$ref": "#/definitions/wishlistUpdateItemInWishlistRequestPayload"
         },
         "payloadMask": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id",
+        "payload",
+        "payloadMask"
+      ]
     },
     "wishlistUpdateItemInWishlistRequestPayload": {
       "type": "object",
@@ -844,12 +898,15 @@
           "$ref": "#/definitions/wishlistUpdateWishlistRequestPayload"
         },
         "payloadMask": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "tenantId",
+        "id",
+        "payload",
+        "payloadMask"
+      ]
     },
     "wishlistUpdateWishlistRequestPayload": {
       "type": "object",

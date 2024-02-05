@@ -42,18 +42,14 @@ export interface ListWishlistsRequestFilter {
  * @interface ProtobufAny
  */
 export interface ProtobufAny {
+    [key: string]: object;
+
     /**
      * 
      * @type {string}
      * @memberof ProtobufAny
      */
-    'typeUrl'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProtobufAny
-     */
-    'value'?: string;
+    '@type'?: string;
 }
 /**
  * 
@@ -91,19 +87,19 @@ export interface WishlistAddItemToWishlistRequest {
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'wishlistId'?: string;
+    'wishlistId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'itemGrn'?: string;
+    'itemGrn': string;
     /**
      * 
      * @type {string}
@@ -134,7 +130,7 @@ export interface WishlistAreItemsInWishlistsRequest {
      * @type {string}
      * @memberof WishlistAreItemsInWishlistsRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
@@ -152,7 +148,7 @@ export interface WishlistAreItemsInWishlistsRequest {
      * @type {Array<string>}
      * @memberof WishlistAreItemsInWishlistsRequest
      */
-    'itemGrns'?: Array<string>;
+    'itemGrns': Array<string>;
 }
 /**
  * 
@@ -191,13 +187,13 @@ export interface WishlistBulkRemoveItemsFromWishlistsRequest {
      * @type {string}
      * @memberof WishlistBulkRemoveItemsFromWishlistsRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * Item GRNs to remove from wishlists. Max 500 items per request.
      * @type {Array<string>}
      * @memberof WishlistBulkRemoveItemsFromWishlistsRequest
      */
-    'itemGrns'?: Array<string>;
+    'itemGrns': Array<string>;
     /**
      * Wishlist IDs to remove items from. Max 500 wishlists per request. If not provided, items will be removed from all wishlists.
      * @type {Array<string>}
@@ -216,13 +212,13 @@ export interface WishlistCreateWishlistRequest {
      * @type {string}
      * @memberof WishlistCreateWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {WishlistPrivacy}
      * @memberof WishlistCreateWishlistRequest
      */
-    'privacy'?: WishlistPrivacy;
+    'privacy': WishlistPrivacy;
     /**
      * 
      * @type {WishlistLocalizedText}
@@ -261,13 +257,13 @@ export interface WishlistDeleteWishlistRequest {
      * @type {string}
      * @memberof WishlistDeleteWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistDeleteWishlistRequest
      */
-    'id'?: string;
+    'id': string;
 }
 /**
  * 
@@ -280,13 +276,13 @@ export interface WishlistGetItemFromWishlistRequest {
      * @type {string}
      * @memberof WishlistGetItemFromWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetItemFromWishlistRequest
      */
-    'id'?: string;
+    'id': string;
 }
 /**
  * 
@@ -299,13 +295,13 @@ export interface WishlistGetWishlistByIdRequest {
      * @type {string}
      * @memberof WishlistGetWishlistByIdRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetWishlistByIdRequest
      */
-    'id'?: string;
+    'id': string;
 }
 /**
  * 
@@ -318,13 +314,13 @@ export interface WishlistGetWishlistBySharedCodeRequest {
      * @type {string}
      * @memberof WishlistGetWishlistBySharedCodeRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetWishlistBySharedCodeRequest
      */
-    'sharedCode'?: string;
+    'sharedCode': string;
     /**
      * 
      * @type {string}
@@ -343,13 +339,13 @@ export interface WishlistListWishlistItemsRequest {
      * @type {string}
      * @memberof WishlistListWishlistItemsRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistListWishlistItemsRequest
      */
-    'wishlistId'?: string;
+    'wishlistId': string;
     /**
      * 
      * @type {string}
@@ -399,7 +395,7 @@ export interface WishlistListWishlistsRequest {
      * @type {string}
      * @memberof WishlistListWishlistsRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {number}
@@ -420,10 +416,10 @@ export interface WishlistListWishlistsRequest {
     'filter'?: ListWishlistsRequestFilter;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof WishlistListWishlistsRequest
      */
-    'filterMask'?: Array<string>;
+    'filterMask'?: string;
 }
 /**
  * 
@@ -468,19 +464,19 @@ export interface WishlistMergeWishlistsRequest {
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'startingWishlistId'?: string;
+    'startingWishlistId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'customerGrn'?: string;
+    'customerGrn': string;
     /**
      * The wishlist to merge into the starting wishlist.
      * @type {string}
@@ -515,13 +511,13 @@ export interface WishlistRemoveItemFromWishlistRequest {
      * @type {string}
      * @memberof WishlistRemoveItemFromWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistRemoveItemFromWishlistRequest
      */
-    'id'?: string;
+    'id': string;
 }
 /**
  * 
@@ -534,25 +530,25 @@ export interface WishlistUpdateItemInWishlistRequest {
      * @type {string}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {WishlistUpdateItemInWishlistRequestPayload}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'payload'?: WishlistUpdateItemInWishlistRequestPayload;
+    'payload': WishlistUpdateItemInWishlistRequestPayload;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'payloadMask'?: Array<string>;
+    'payloadMask': string;
 }
 /**
  * 
@@ -590,25 +586,25 @@ export interface WishlistUpdateWishlistRequest {
      * @type {string}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'tenantId'?: string;
+    'tenantId': string;
     /**
      * 
      * @type {string}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {WishlistUpdateWishlistRequestPayload}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'payload'?: WishlistUpdateWishlistRequestPayload;
+    'payload': WishlistUpdateWishlistRequestPayload;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'payloadMask'?: Array<string>;
+    'payloadMask': string;
 }
 /**
  * 
