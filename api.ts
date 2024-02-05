@@ -14,14 +14,14 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
  * 
@@ -42,7 +42,7 @@ export interface ListWishlistsRequestFilter {
  * @interface ProtobufAny
  */
 export interface ProtobufAny {
-    [key: string]: object;
+    [key: string]: any;
 
     /**
      * 
@@ -788,7 +788,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistAddItemToWishlist: async (body: WishlistAddItemToWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistAddItemToWishlist: async (body: WishlistAddItemToWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistAddItemToWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/AddItemToWishlist`;
@@ -823,7 +823,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistAreItemsInWishlists: async (body: WishlistAreItemsInWishlistsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistAreItemsInWishlists: async (body: WishlistAreItemsInWishlistsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistAreItemsInWishlists', 'body', body)
             const localVarPath = `/wishlist.Wishlist/AreItemsInWishlists`;
@@ -859,7 +859,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistBulkRemoveItemsFromWishlists: async (body: WishlistBulkRemoveItemsFromWishlistsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistBulkRemoveItemsFromWishlists: async (body: WishlistBulkRemoveItemsFromWishlistsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistBulkRemoveItemsFromWishlists', 'body', body)
             const localVarPath = `/wishlist.Wishlist/BulkRemoveItemsFromWishlists`;
@@ -894,7 +894,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistCreateWishlist: async (body: WishlistCreateWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistCreateWishlist: async (body: WishlistCreateWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistCreateWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/CreateWishlist`;
@@ -929,7 +929,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistDeleteWishlist: async (body: WishlistDeleteWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistDeleteWishlist: async (body: WishlistDeleteWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistDeleteWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/DeleteWishlist`;
@@ -964,7 +964,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistGetItemFromWishlist: async (body: WishlistGetItemFromWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistGetItemFromWishlist: async (body: WishlistGetItemFromWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistGetItemFromWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/GetItemFromWishlist`;
@@ -999,7 +999,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistGetWishlistById: async (body: WishlistGetWishlistByIdRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistGetWishlistById: async (body: WishlistGetWishlistByIdRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistGetWishlistById', 'body', body)
             const localVarPath = `/wishlist.Wishlist/GetWishlistById`;
@@ -1034,7 +1034,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistGetWishlistBySharedCode: async (body: WishlistGetWishlistBySharedCodeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistGetWishlistBySharedCode: async (body: WishlistGetWishlistBySharedCodeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistGetWishlistBySharedCode', 'body', body)
             const localVarPath = `/wishlist.Wishlist/GetWishlistBySharedCode`;
@@ -1069,7 +1069,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistListWishlistItems: async (body: WishlistListWishlistItemsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistListWishlistItems: async (body: WishlistListWishlistItemsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistListWishlistItems', 'body', body)
             const localVarPath = `/wishlist.Wishlist/ListWishlistItems`;
@@ -1104,7 +1104,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistListWishlists: async (body: WishlistListWishlistsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistListWishlists: async (body: WishlistListWishlistsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistListWishlists', 'body', body)
             const localVarPath = `/wishlist.Wishlist/ListWishlists`;
@@ -1139,7 +1139,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistMergeWishlists: async (body: WishlistMergeWishlistsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistMergeWishlists: async (body: WishlistMergeWishlistsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistMergeWishlists', 'body', body)
             const localVarPath = `/wishlist.Wishlist/MergeWishlists`;
@@ -1174,7 +1174,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistRemoveItemFromWishlist: async (body: WishlistRemoveItemFromWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistRemoveItemFromWishlist: async (body: WishlistRemoveItemFromWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistRemoveItemFromWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/RemoveItemFromWishlist`;
@@ -1209,7 +1209,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistUpdateItemInWishlist: async (body: WishlistUpdateItemInWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistUpdateItemInWishlist: async (body: WishlistUpdateItemInWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistUpdateItemInWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/UpdateItemInWishlist`;
@@ -1244,7 +1244,7 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        wishlistUpdateWishlist: async (body: WishlistUpdateWishlistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        wishlistUpdateWishlist: async (body: WishlistUpdateWishlistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistUpdateWishlist', 'body', body)
             const localVarPath = `/wishlist.Wishlist/UpdateWishlist`;
@@ -1289,9 +1289,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistAddItemToWishlist(body: WishlistAddItemToWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
+        async wishlistAddItemToWishlist(body: WishlistAddItemToWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistAddItemToWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistAddItemToWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1299,9 +1301,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistAreItemsInWishlists(body: WishlistAreItemsInWishlistsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistAreItemsInWishlistsResponse>> {
+        async wishlistAreItemsInWishlists(body: WishlistAreItemsInWishlistsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistAreItemsInWishlistsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistAreItemsInWishlists(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistAreItemsInWishlists']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1310,9 +1314,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistBulkRemoveItemsFromWishlists(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistBulkRemoveItemsFromWishlists']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1320,9 +1326,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistCreateWishlist(body: WishlistCreateWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
+        async wishlistCreateWishlist(body: WishlistCreateWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistCreateWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistCreateWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1330,9 +1338,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistDeleteWishlist(body: WishlistDeleteWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async wishlistDeleteWishlist(body: WishlistDeleteWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistDeleteWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistDeleteWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1340,9 +1350,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistGetItemFromWishlist(body: WishlistGetItemFromWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
+        async wishlistGetItemFromWishlist(body: WishlistGetItemFromWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistGetItemFromWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistGetItemFromWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1350,9 +1362,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistGetWishlistById(body: WishlistGetWishlistByIdRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
+        async wishlistGetWishlistById(body: WishlistGetWishlistByIdRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistGetWishlistById(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistGetWishlistById']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1360,9 +1374,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistGetWishlistBySharedCode(body: WishlistGetWishlistBySharedCodeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
+        async wishlistGetWishlistBySharedCode(body: WishlistGetWishlistBySharedCodeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistGetWishlistBySharedCode(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistGetWishlistBySharedCode']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1370,9 +1386,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistListWishlistItems(body: WishlistListWishlistItemsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistListWishlistItemsResponse>> {
+        async wishlistListWishlistItems(body: WishlistListWishlistItemsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistListWishlistItemsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistListWishlistItems(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistListWishlistItems']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1380,9 +1398,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistListWishlists(body: WishlistListWishlistsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistListWishlistsResponse>> {
+        async wishlistListWishlists(body: WishlistListWishlistsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistListWishlistsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistListWishlists(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistListWishlists']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1390,9 +1410,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistMergeWishlists(body: WishlistMergeWishlistsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
+        async wishlistMergeWishlists(body: WishlistMergeWishlistsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistMergeWishlists(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistMergeWishlists']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1400,9 +1422,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistRemoveItemFromWishlist(body: WishlistRemoveItemFromWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async wishlistRemoveItemFromWishlist(body: WishlistRemoveItemFromWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistRemoveItemFromWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistRemoveItemFromWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1410,9 +1434,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistUpdateItemInWishlist(body: WishlistUpdateItemInWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
+        async wishlistUpdateItemInWishlist(body: WishlistUpdateItemInWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistItemResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistUpdateItemInWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistUpdateItemInWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -1420,9 +1446,11 @@ export const WishlistApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async wishlistUpdateWishlist(body: WishlistUpdateWishlistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
+        async wishlistUpdateWishlist(body: WishlistUpdateWishlistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistWishlistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistUpdateWishlist(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistUpdateWishlist']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -1578,7 +1606,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistAddItemToWishlist(body: WishlistAddItemToWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistAddItemToWishlist(body: WishlistAddItemToWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistAddItemToWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1589,7 +1617,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistAreItemsInWishlists(body: WishlistAreItemsInWishlistsRequest, options?: AxiosRequestConfig) {
+    public wishlistAreItemsInWishlists(body: WishlistAreItemsInWishlistsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistAreItemsInWishlists(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1601,7 +1629,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: AxiosRequestConfig) {
+    public wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistBulkRemoveItemsFromWishlists(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1612,7 +1640,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistCreateWishlist(body: WishlistCreateWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistCreateWishlist(body: WishlistCreateWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistCreateWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1623,7 +1651,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistDeleteWishlist(body: WishlistDeleteWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistDeleteWishlist(body: WishlistDeleteWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistDeleteWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1634,7 +1662,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistGetItemFromWishlist(body: WishlistGetItemFromWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistGetItemFromWishlist(body: WishlistGetItemFromWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistGetItemFromWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1645,7 +1673,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistGetWishlistById(body: WishlistGetWishlistByIdRequest, options?: AxiosRequestConfig) {
+    public wishlistGetWishlistById(body: WishlistGetWishlistByIdRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistGetWishlistById(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1656,7 +1684,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistGetWishlistBySharedCode(body: WishlistGetWishlistBySharedCodeRequest, options?: AxiosRequestConfig) {
+    public wishlistGetWishlistBySharedCode(body: WishlistGetWishlistBySharedCodeRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistGetWishlistBySharedCode(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1667,7 +1695,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistListWishlistItems(body: WishlistListWishlistItemsRequest, options?: AxiosRequestConfig) {
+    public wishlistListWishlistItems(body: WishlistListWishlistItemsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistListWishlistItems(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1678,7 +1706,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistListWishlists(body: WishlistListWishlistsRequest, options?: AxiosRequestConfig) {
+    public wishlistListWishlists(body: WishlistListWishlistsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistListWishlists(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1689,7 +1717,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistMergeWishlists(body: WishlistMergeWishlistsRequest, options?: AxiosRequestConfig) {
+    public wishlistMergeWishlists(body: WishlistMergeWishlistsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistMergeWishlists(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1700,7 +1728,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistRemoveItemFromWishlist(body: WishlistRemoveItemFromWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistRemoveItemFromWishlist(body: WishlistRemoveItemFromWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistRemoveItemFromWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1711,7 +1739,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistUpdateItemInWishlist(body: WishlistUpdateItemInWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistUpdateItemInWishlist(body: WishlistUpdateItemInWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistUpdateItemInWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1722,7 +1750,7 @@ export class WishlistApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof WishlistApi
      */
-    public wishlistUpdateWishlist(body: WishlistUpdateWishlistRequest, options?: AxiosRequestConfig) {
+    public wishlistUpdateWishlist(body: WishlistUpdateWishlistRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistUpdateWishlist(body, options).then((request) => request(this.axios, this.basePath));
     }
 }
