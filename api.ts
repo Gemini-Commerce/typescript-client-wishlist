@@ -30,7 +30,7 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
  */
 export interface ListWishlistsRequestFilter {
     /**
-     * 
+     * If the customer GRN is set on JWT, it will be used as default. Otherwise, it will be used the customer_grn field.
      * @type {string}
      * @memberof ListWishlistsRequestFilter
      */
@@ -42,14 +42,18 @@ export interface ListWishlistsRequestFilter {
  * @interface ProtobufAny
  */
 export interface ProtobufAny {
-    [key: string]: any;
-
     /**
      * 
      * @type {string}
      * @memberof ProtobufAny
      */
-    '@type'?: string;
+    'typeUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProtobufAny
+     */
+    'value'?: string;
 }
 /**
  * 
@@ -87,19 +91,19 @@ export interface WishlistAddItemToWishlistRequest {
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'wishlistId': string;
+    'wishlistId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistAddItemToWishlistRequest
      */
-    'itemGrn': string;
+    'itemGrn'?: string;
     /**
      * 
      * @type {string}
@@ -130,7 +134,7 @@ export interface WishlistAreItemsInWishlistsRequest {
      * @type {string}
      * @memberof WishlistAreItemsInWishlistsRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
@@ -148,7 +152,7 @@ export interface WishlistAreItemsInWishlistsRequest {
      * @type {Array<string>}
      * @memberof WishlistAreItemsInWishlistsRequest
      */
-    'itemGrns': Array<string>;
+    'itemGrns'?: Array<string>;
 }
 /**
  * 
@@ -179,6 +183,38 @@ export interface WishlistAreItemsInWishlistsResponsePayload {
 /**
  * 
  * @export
+ * @interface WishlistBulkCreateSharingRequest
+ */
+export interface WishlistBulkCreateSharingRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistBulkCreateSharingRequest
+     */
+    'tenantId'?: string;
+    /**
+     * 
+     * @type {Array<WishlistSharingRequest>}
+     * @memberof WishlistBulkCreateSharingRequest
+     */
+    'sharingRequests'?: Array<WishlistSharingRequest>;
+}
+/**
+ * 
+ * @export
+ * @interface WishlistBulkCreateSharingResponse
+ */
+export interface WishlistBulkCreateSharingResponse {
+    /**
+     * 
+     * @type {Array<WishlistSharingResponse>}
+     * @memberof WishlistBulkCreateSharingResponse
+     */
+    'sharingResponses'?: Array<WishlistSharingResponse>;
+}
+/**
+ * 
+ * @export
  * @interface WishlistBulkRemoveItemsFromWishlistsRequest
  */
 export interface WishlistBulkRemoveItemsFromWishlistsRequest {
@@ -187,19 +223,38 @@ export interface WishlistBulkRemoveItemsFromWishlistsRequest {
      * @type {string}
      * @memberof WishlistBulkRemoveItemsFromWishlistsRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * Item GRNs to remove from wishlists. Max 500 items per request.
      * @type {Array<string>}
      * @memberof WishlistBulkRemoveItemsFromWishlistsRequest
      */
-    'itemGrns': Array<string>;
+    'itemGrns'?: Array<string>;
     /**
      * Wishlist IDs to remove items from. Max 500 wishlists per request. If not provided, items will be removed from all wishlists.
      * @type {Array<string>}
      * @memberof WishlistBulkRemoveItemsFromWishlistsRequest
      */
     'wishlistIds'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface WishlistBulkRevokeSharingRequest
+ */
+export interface WishlistBulkRevokeSharingRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistBulkRevokeSharingRequest
+     */
+    'tenantId'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WishlistBulkRevokeSharingRequest
+     */
+    'sharingIds'?: Array<string>;
 }
 /**
  * 
@@ -212,13 +267,13 @@ export interface WishlistCreateWishlistRequest {
      * @type {string}
      * @memberof WishlistCreateWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {WishlistPrivacy}
      * @memberof WishlistCreateWishlistRequest
      */
-    'privacy': WishlistPrivacy;
+    'privacy'?: WishlistPrivacy;
     /**
      * 
      * @type {WishlistLocalizedText}
@@ -232,7 +287,7 @@ export interface WishlistCreateWishlistRequest {
      */
     'description'?: WishlistLocalizedText;
     /**
-     * 
+     * If the customer GRN is set on JWT, it will be used as default. Otherwise, it will be used the customer_grn field.
      * @type {string}
      * @memberof WishlistCreateWishlistRequest
      */
@@ -257,13 +312,13 @@ export interface WishlistDeleteWishlistRequest {
      * @type {string}
      * @memberof WishlistDeleteWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistDeleteWishlistRequest
      */
-    'id': string;
+    'id'?: string;
 }
 /**
  * 
@@ -276,13 +331,13 @@ export interface WishlistGetItemFromWishlistRequest {
      * @type {string}
      * @memberof WishlistGetItemFromWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetItemFromWishlistRequest
      */
-    'id': string;
+    'id'?: string;
 }
 /**
  * 
@@ -295,13 +350,13 @@ export interface WishlistGetWishlistByIdRequest {
      * @type {string}
      * @memberof WishlistGetWishlistByIdRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetWishlistByIdRequest
      */
-    'id': string;
+    'id'?: string;
 }
 /**
  * 
@@ -314,15 +369,15 @@ export interface WishlistGetWishlistBySharedCodeRequest {
      * @type {string}
      * @memberof WishlistGetWishlistBySharedCodeRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistGetWishlistBySharedCodeRequest
      */
-    'sharedCode': string;
+    'sharedCode'?: string;
     /**
-     * 
+     * If the customer GRN is set on JWT, it will be used as default. Otherwise, it will be used the customer_grn field.
      * @type {string}
      * @memberof WishlistGetWishlistBySharedCodeRequest
      */
@@ -339,13 +394,13 @@ export interface WishlistListWishlistItemsRequest {
      * @type {string}
      * @memberof WishlistListWishlistItemsRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistListWishlistItemsRequest
      */
-    'wishlistId': string;
+    'wishlistId'?: string;
     /**
      * 
      * @type {string}
@@ -395,7 +450,7 @@ export interface WishlistListWishlistsRequest {
      * @type {string}
      * @memberof WishlistListWishlistsRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {number}
@@ -416,10 +471,10 @@ export interface WishlistListWishlistsRequest {
     'filter'?: ListWishlistsRequestFilter;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof WishlistListWishlistsRequest
      */
-    'filterMask'?: string;
+    'filterMask'?: Array<string>;
 }
 /**
  * 
@@ -464,19 +519,19 @@ export interface WishlistMergeWishlistsRequest {
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'startingWishlistId': string;
+    'startingWishlistId'?: string;
     /**
-     * 
+     * If the customer GRN is set on JWT, it will be used as default. Otherwise, it will be used the customer_grn field.
      * @type {string}
      * @memberof WishlistMergeWishlistsRequest
      */
-    'customerGrn': string;
+    'customerGrn'?: string;
     /**
      * The wishlist to merge into the starting wishlist.
      * @type {string}
@@ -484,6 +539,21 @@ export interface WishlistMergeWishlistsRequest {
      */
     'targetWishlistId'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WishlistPermission = {
+    UnknownPermission: 'UNKNOWN_PERMISSION',
+    ViewPermission: 'VIEW_PERMISSION',
+    EditPermission: 'EDIT_PERMISSION'
+} as const;
+
+export type WishlistPermission = typeof WishlistPermission[keyof typeof WishlistPermission];
+
+
 /**
  * 
  * @export
@@ -511,14 +581,104 @@ export interface WishlistRemoveItemFromWishlistRequest {
      * @type {string}
      * @memberof WishlistRemoveItemFromWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistRemoveItemFromWishlistRequest
      */
-    'id': string;
+    'id'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface WishlistSharingRequest
+ */
+export interface WishlistSharingRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingRequest
+     */
+    'wishlistId'?: string;
+    /**
+     * 
+     * @type {WishlistPermission}
+     * @memberof WishlistSharingRequest
+     */
+    'permission'?: WishlistPermission;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingRequest
+     */
+    'customerGrn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingRequest
+     */
+    'customerAggregationId'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface WishlistSharingResponse
+ */
+export interface WishlistSharingResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'sharingId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'sharingGrn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'wishlistId'?: string;
+    /**
+     * 
+     * @type {WishlistPermission}
+     * @memberof WishlistSharingResponse
+     */
+    'permission'?: WishlistPermission;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'customerGrn'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'customerAggregationId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'createdAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WishlistSharingResponse
+     */
+    'updatedAt'?: string;
+}
+
+
 /**
  * 
  * @export
@@ -530,25 +690,25 @@ export interface WishlistUpdateItemInWishlistRequest {
      * @type {string}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'id': string;
+    'id'?: string;
     /**
      * 
      * @type {WishlistUpdateItemInWishlistRequestPayload}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'payload': WishlistUpdateItemInWishlistRequestPayload;
+    'payload'?: WishlistUpdateItemInWishlistRequestPayload;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof WishlistUpdateItemInWishlistRequest
      */
-    'payloadMask': string;
+    'payloadMask'?: Array<string>;
 }
 /**
  * 
@@ -586,25 +746,25 @@ export interface WishlistUpdateWishlistRequest {
      * @type {string}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'tenantId': string;
+    'tenantId'?: string;
     /**
      * 
      * @type {string}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'id': string;
+    'id'?: string;
     /**
      * 
      * @type {WishlistUpdateWishlistRequestPayload}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'payload': WishlistUpdateWishlistRequestPayload;
+    'payload'?: WishlistUpdateWishlistRequestPayload;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof WishlistUpdateWishlistRequest
      */
-    'payloadMask': string;
+    'payloadMask'?: Array<string>;
 }
 /**
  * 
@@ -854,6 +1014,42 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary Sharing endpoints
+         * @param {WishlistBulkCreateSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wishlistBulkCreateSharing: async (body: WishlistBulkCreateSharingRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('wishlistBulkCreateSharing', 'body', body)
+            const localVarPath = `/wishlist.Wishlist/BulkCreateSharing`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary BulkRemoveItemsFromWishlists removes items from wishlists.
          * @param {WishlistBulkRemoveItemsFromWishlistsRequest} body 
          * @param {*} [options] Override http request option.
@@ -863,6 +1059,41 @@ export const WishlistApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'body' is not null or undefined
             assertParamExists('wishlistBulkRemoveItemsFromWishlists', 'body', body)
             const localVarPath = `/wishlist.Wishlist/BulkRemoveItemsFromWishlists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {WishlistBulkRevokeSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wishlistBulkRevokeSharing: async (body: WishlistBulkRevokeSharingRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('wishlistBulkRevokeSharing', 'body', body)
+            const localVarPath = `/wishlist.Wishlist/BulkRevokeSharing`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1309,6 +1540,19 @@ export const WishlistApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Sharing endpoints
+         * @param {WishlistBulkCreateSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async wishlistBulkCreateSharing(body: WishlistBulkCreateSharingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WishlistBulkCreateSharingResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistBulkCreateSharing(body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistBulkCreateSharing']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary BulkRemoveItemsFromWishlists removes items from wishlists.
          * @param {WishlistBulkRemoveItemsFromWishlistsRequest} body 
          * @param {*} [options] Override http request option.
@@ -1318,6 +1562,18 @@ export const WishlistApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistBulkRemoveItemsFromWishlists(body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['WishlistApi.wishlistBulkRemoveItemsFromWishlists']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {WishlistBulkRevokeSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async wishlistBulkRevokeSharing(body: WishlistBulkRevokeSharingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.wishlistBulkRevokeSharing(body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WishlistApi.wishlistBulkRevokeSharing']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
@@ -1482,6 +1738,16 @@ export const WishlistApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
+         * @summary Sharing endpoints
+         * @param {WishlistBulkCreateSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wishlistBulkCreateSharing(body: WishlistBulkCreateSharingRequest, options?: any): AxiosPromise<WishlistBulkCreateSharingResponse> {
+            return localVarFp.wishlistBulkCreateSharing(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary BulkRemoveItemsFromWishlists removes items from wishlists.
          * @param {WishlistBulkRemoveItemsFromWishlistsRequest} body 
          * @param {*} [options] Override http request option.
@@ -1489,6 +1755,15 @@ export const WishlistApiFactory = function (configuration?: Configuration, baseP
          */
         wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: any): AxiosPromise<object> {
             return localVarFp.wishlistBulkRemoveItemsFromWishlists(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {WishlistBulkRevokeSharingRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wishlistBulkRevokeSharing(body: WishlistBulkRevokeSharingRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.wishlistBulkRevokeSharing(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1623,6 +1898,18 @@ export class WishlistApi extends BaseAPI {
 
     /**
      * 
+     * @summary Sharing endpoints
+     * @param {WishlistBulkCreateSharingRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WishlistApi
+     */
+    public wishlistBulkCreateSharing(body: WishlistBulkCreateSharingRequest, options?: RawAxiosRequestConfig) {
+        return WishlistApiFp(this.configuration).wishlistBulkCreateSharing(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary BulkRemoveItemsFromWishlists removes items from wishlists.
      * @param {WishlistBulkRemoveItemsFromWishlistsRequest} body 
      * @param {*} [options] Override http request option.
@@ -1631,6 +1918,17 @@ export class WishlistApi extends BaseAPI {
      */
     public wishlistBulkRemoveItemsFromWishlists(body: WishlistBulkRemoveItemsFromWishlistsRequest, options?: RawAxiosRequestConfig) {
         return WishlistApiFp(this.configuration).wishlistBulkRemoveItemsFromWishlists(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {WishlistBulkRevokeSharingRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WishlistApi
+     */
+    public wishlistBulkRevokeSharing(body: WishlistBulkRevokeSharingRequest, options?: RawAxiosRequestConfig) {
+        return WishlistApiFp(this.configuration).wishlistBulkRevokeSharing(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
