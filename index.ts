@@ -12,16 +12,7 @@
  * Do not edit the class manually.
  */
 
-/**
- * 
- * @export
- * @interface WishlistBulkCreateSharingResponse
- */
-export interface WishlistBulkCreateSharingResponse {
-    /**
-     * 
-     * @type {Array<WishlistSharingResponse>}
-     * @memberof WishlistBulkCreateSharingResponse
-     */
-    'sharingResponses'?: Array<WishlistSharingResponse>;
-}
+
+export * from "./api";
+export * from "./configuration";
+
